@@ -3,4 +3,4 @@ Libert MDAS is an Geo-Spatial Software that tracks aircraft traffic, military ai
 
 This is my first time building a GeoSpatial Project that I always wanted to build. Previously, the Project was called Saphics-Space.
 
-I'm inspired the WorldView created by Bilawal(Ex-Google PM) through his recent video on how he created a similar GeoSpatial software like Palantir.
+I'm inspired by the WorldView created by Bilawal(Ex-Google PM) through his recent video on how he created a similar GeoSpatial software like Palantir.
