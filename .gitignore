@@ -1,0 +1,17 @@
+.env.local
+.env*.local
+.env
+
+node_modules/
+
+dist/
+dist-electron/
+
+.vscode/
+
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+
+release/
