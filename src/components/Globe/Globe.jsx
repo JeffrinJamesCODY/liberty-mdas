@@ -221,6 +221,7 @@ export default function Globe() {
     </div>
   )
 
+  
 function detectMilitary(callsign, icao24) {
   if (!callsign) return false
   const call = callsign.trim().toUpperCase()
