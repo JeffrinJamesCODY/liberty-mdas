@@ -1,0 +1,22 @@
+:root {
+    --bg-void: #000408;
+    --bg-deep: #010b14;
+    --bg-panel: rgba(0, 12, 24, 0.85);
+    --bg-panel-hover: rgba(0, 20, 40, 0.92);
+
+    --accent-primary: #00d4ff;
+    --accent-secondary: #00ff9d;
+    --accent-warning: #ffaa00;
+    --accent-danger: #FF3355;
+    --accent-purple: #8855ff;
+
+    --text-primary: #e0f4ff;
+    --text-secondary: #7ab8d4;
+    --text-dim: #3a6070;
+    --text-mono: #00d4ff;
+
+    --border-subtle: rgba(0, 212, 255, 0.12);
+    --border-active: rgba(0, 212, 255, 0.4);
+    
+    
+}
