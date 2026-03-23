@@ -1,0 +1,94 @@
+.panel {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-active);
+    border-radius: var(--hud-radius);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.1), 0 8px 32px rgba(0,0,0,0.5);
+    animation: fade-in 0.2s ease;
+
+}
+
+.jeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.entityType {
+    font-family: var(--font-data);
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--text-subtle);
+}
+
+.close {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 11px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    transition: color 0.1s;
+
+    &:hover { color: var(--text-primary); }
+}
+
+.body {
+    padding: 12px 14px;
+}
+
+.callsign {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent-primary);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.military { color: var(--accent-danger) !important;}
+
+.milBadge {
+    font-family: var(--font-data);
+    font-size: 8px;
+    padding: 2px 6px;
+    background: rgba(255, 51, 85, 0.15);
+    border: 1px solid rgba(255, 51, 85, 0.3);
+    border-radius: 2px;
+    color: var(--accent-danger);
+    letter-spacing: 2px;
+}
+
+.dataRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(0, 2012, 255, 0.04);
+}
+
+.dataLabel {
+    font-family: var(--font-data);
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+}
+
+.source {
+    margin-top: 10px;
+    font-family: var(--font-data);
+    font-size: 8px;
+    color : var(--text-dim);
+    letter-spacing: 1px;
+    opacity: 0.6;
+}
