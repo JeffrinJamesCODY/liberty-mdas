@@ -1,0 +1,53 @@
+.hud {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    font-family: var(--font-ui);
+    z-index: 10;
+}
+
+.hud > * {
+    pointer-events: all;
+}
+
+.cornerTL,
+.cornerTR,
+.cornerBL,
+.cornerBR {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+}
+
+.cornerTL {
+    top: 12px;
+    left: 12px;
+    border-top: var(--accent-primary);
+    border-left: var(--accent-primary);
+    opacity: 0.4;
+}
+
+.cornerTR {
+    top: 12px;
+    right: 12px;
+    border-top: var(--accent-primary);
+    border-right: var(--accent-primary);
+    opacity: 0.4;
+}
+
+.cornerBL {
+    bottom: 12px;
+    left: 12px;
+    border-bottom: var(--accent-primary);
+    border-left: var(--accent-primary);
+    opacity: 0.4;
+}
+
+.cornerBR {
+    bottom: 12px;
+    right: 12px;
+    border-bottom: var(--accent-primary);
+    border-right: var(--accent-primary);
+    opacity: 0.4;
+}
