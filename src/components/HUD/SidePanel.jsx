@@ -46,3 +46,62 @@ export default function SidePanel() {
         </div>
     )
 }
+
+function Section({ title, accent, children}) {
+    return (
+        <div className={styles.section}>
+            <div className={`${styles.sectionHeader} ${styles[`accent_${accent}`]}`}>
+                <span className={styles.sectionDash}>-</span>
+                {title}
+                </div>
+                <div className={styles.sectionBody}>{children}</div>
+        </div>
+    )
+}
+
+function MilRow({ ac}) {
+    const [icao24, callsign, country, , , lon, lat, alt, , velocity, heading] = ac
+    return (
+        <div className={styles.milRow}>
+            <span className={styles.milCall}>{callsign?.trim() || icao24}</span>
+            <span className={styles.milAlt}> {alt ? `${Math.round(alt / 100) * 100} ft` : '---'}</span>
+    
+        </div>
+    )
+}
+
+function NEORow({neo}) {
+    const dist = neo.closeApproach?.missDistanceLunar
+    const hazard = neo.isPotentiallyHazardous
+    return (
+        <div className={`${styles.neoRow} ${hazard ? styles.neoHazard : ''}`}>
+            <div className={styles.neoName}>{neo.name.replace(/[()]/g, '').trim()}</div>
+            <div className={styles.neoData}> 
+                {dist ? `${dist.toFixed(1)} LD` : '---'}
+                {hazard && <span className={styles.hazardBadge}>PHO</span>}
+            </div>
+        </div>
+    )
+}
+
+function FeedRow({ label, status, detail}) {
+    const statusLabel = {
+        live: 'LIVE', connecting: 'LIBERTY CONN...', error: 'ERROR', offline: 'LIBERTY OFFLINE',
+        mock: 'MOCK'
+    } [status] || '---'
+
+    const statusClass = {
+        live: styles.statusLive, connecting: styles.statusConnecting,
+        error: styles.statusError, offline: styles.statusOffline, mock: styles.statusMock,
+    }[status] || ''
+
+    return (
+        <div className={styles.feedRow}>
+            <div>
+                <div className={styles.feedName}>{label}</div>
+                <div className={styles.feedDetail}>{detail}</div>
+            </div>
+            <span className={`${styles.feedStatus} ${statusClass}`}></span>
+        </div>
+    )
+}
