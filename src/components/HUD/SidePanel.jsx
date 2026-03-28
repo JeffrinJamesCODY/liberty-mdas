@@ -36,6 +36,13 @@ export default function SidePanel() {
                     ))
                 )}
             </Section>
+// Liberty Data (Health)
+            <Section title="LIBERTY DATA FEEDS" accent="cyan">
+                <FeedRow label="OpenSky ADS-B" status={feedStatus.opensky} detail="Civil + Military"/>
+                <FeedRow label="Celestrak TLE" status={feedStatus.celestrak} detail="Satellite Orbits" />
+                <FeedRow label="NASA NeoWs" status={feedStatus.nasa} detail="Asteroid data"/>
+            </Section>
+
         </div>
     )
 }
