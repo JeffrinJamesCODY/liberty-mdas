@@ -1,0 +1,168 @@
+.panel {
+    position: absolute;
+    top: 70px;
+    left: 16px;
+    width: 240 px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    animation: slide-in-left 0.5s ease;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.section {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--hud-radius);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+}
+
+.sectionHeader {
+    padding: 7px 12px;
+    font-family: var(--font-data);
+    font-size: 9px;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sectionDash { opacity: 0.4; }
+
+.accent_cyan { color: var(--accent-primary);}
+.accent_red {color: var(--accent-danger); }
+.accent_amber { color: var(--accent-warning);}
+.accent_green { color: var(--accent-secondary);}
+
+.sectionBody {
+    padding: 6px;
+}
+
+.empty {
+    padding: 8px 6px;
+    font-family: var(--font-data);
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.milRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 2px;
+    transition: background 0.1s;
+    cursor: pointer;
+
+    &:hover { background: rgba(255, 51, 85, 0.08);}
+}
+
+.milCall {
+    font-family: var(--font-data);
+    font-size: 11px;
+    color: var(--accent-danger);
+    letter-spacing: 1px;
+}
+
+.milAlt {
+    font-family: var(--font-data);
+    font-size: 9px;
+    color: var(--text-dim);
+}
+
+.hazardAlert {
+    padding: 5px 8px;
+    background: rgba(255, 51, 85, 0.1);
+    border: 1px solid rgba(255, 51, 85, 0.2);
+    border-radius: 2px;
+    font-family: var(--font-data);
+    font-size:  9px;
+    color: var(--accent-danger);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.neoRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.1s;
+
+    &:hover { background: rgba(255, 170, 0, 0.06);
+    }
+}
+
+.noeHazard .neoName { color: var(--accent-warning); }
+
+.neoName {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    color: var(--text-secondary);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellispsis;
+    max-width: 140px;
+}
+
+.neoData {
+    font-family: var(--font-data);
+    font-size: 9px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.hazardBadge {
+    background: rgba(255, 51, 85, 0.2);
+    color: var(--accent-danger);
+    padding: 1px 4px;
+    border-radius: 2px;
+    font-size: 7px;
+    letter-spacing: 1px;
+}
+
+.feedRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 2px;
+}
+
+.feedName {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.feedDetail {
+    font-family: var(--font-ui);
+    font-size: 8px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.feedStatus {
+    font-family: var(--font-data);
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.statusLive { color: var(--accent-secondary); }
+.statusConnecting { color: var(--accent-warning); animation: blonk 1s infinite;}
+.statusError { color: var(--accent-danger);}
+.statusOffline { color: var(--text-dim);}
+.statusMock { color: #8855ff;}
+
+
+
