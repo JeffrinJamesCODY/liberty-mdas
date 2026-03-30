@@ -10,25 +10,25 @@ export default function TopBar() {
 
     return (
         <div className={styles.topBar}>
-            <div className={styles.logo}>
-                <span className={styles.logoAccent}>◈</span>
-                <span className={styles.logoText}>MDAS</span>
-                <span className={styles.logoSub}>MULTI-DOMAIN AWARENESS SUITE</span>
+            <div className={styles.mdaslogo}>
+                <img src={'src/database/Liberty.01.vmain.png'} alt="Liberty" className={styles.mdaslogoImage} />
+                <div className={styles.mdaslogoText}><span className={styles.mdaslogoSub}>MDAS</span></div>
+
             </div>
-            <div className={styles.center}>
+            <div className={styles.mdascenter}>
                 <Counter label="AIRCRAFT" value={aircraftCount} color="cyan"/>
-                <div className={styles.divider}/>
+                <div className={styles.mdasdivider}/>
                 <Counter label="SATELLITE" value={satelliteCount} color="purple"/>
-                <div className={styles.dividera}/>
+                <div className={styles.mdasdivider}/>
                 <Counter label="TRACKING" value="LIVE" color="green" pulse />
             </div>
 
-            <div className={styles.right}>
-                <div className={styles.clock}>
-                    <div className={styles.date}>{date}</div>
-                    <div className={styles.time}>{utc}</div>
+            <div className={styles.mdasright}>
+                <div className={styles.mdasclock}>
+                    <div className={styles.mdasdate}>{date}</div>
+                    <div className={styles.mdastime}>{utc}</div>
                 </div>
-                <div className={styles.feeds}>
+                <div className={styles.mdasfeeds}>
                     <FeedDot label="OpenADSB" status={feedStatus.opensky} />
                     <FeedDot label="TLE" status={feedStatus.celestrak}/>
                     <FeedDot label="NASA" status={feedStatus.nasa}/>
@@ -40,11 +40,11 @@ export default function TopBar() {
 
 function Counter({ label, value, color, pulse }) {
     return (
-        <div className={styles.counter}>
-            <div className={`${styles.counterValue} ${styles[`color_${color}`]} ${pulse ? styles.pulse : ''}`}>
+        <div className={styles.mdascounter}>
+            <div className={`${styles.mdascounterValue} ${styles[`color_${color}`]} ${pulse ? styles.mdaspulse : ''}`}>
                 {typeof value === 'number' ? value.toLocaleString() : value}
             </div>
-            <div className={styles.counterLabel}>{label}</div>
+            <div className={styles.mdascounterLabel}>{label}</div>
         </div>
     )
 }
@@ -60,8 +60,8 @@ function FeedDot({ label, status }) {
 
     return (
         <div className={statusClass}>
-            <div className={`${styles.dot} ${statusClass}`} />
-            <span className={styles.feedLabel}>{label}</span>
+            <div className={`${styles.mdasdot} ${statusClass}`} />
+            <span className={styles.mdasfeedLabel}>{label}</span>
         </div>
     )
 }
