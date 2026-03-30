@@ -1,0 +1,97 @@
+.topBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: linear-gradient(180deg, rgba(0, 8,20, 0.95) 0%, rgba(0, 8, 20, 0.7) 100%);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 24px;
+    animation: slide-in-right 0.4s ease;
+
+    topbarand::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 212, 255, 0.01) 2px,
+            rgba(0, 212, 255, 0.01) 4px
+        );
+        pointer-events: none;
+    }
+}
+
+.mdaslogo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 220px;
+}
+
+.mdaslogoImage {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.4));
+}
+
+.mdaslogoSub {
+    font-family : var(--font-data);
+    font-size: 8px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+}
+
+.mdascenter {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+
+}
+
+.mdascounter {
+    text-align: center;
+
+}
+.mdascounterValue {
+    font-family: var(--font-data);
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.mdascounterLabel {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    letter-spacing: 2px;
+}
+
+.color_cyan { color: var(--accent-primary); text-shadow: 0 0 10px var(--accent-primary); }
+.color_green { color: var(--accent-secondary); text-shadow: 0 0 10px var(--accent-secondary);}
+.color_purple {color: #8855ff; text-shadow: 0 0 10px #8855ff;}
+
+.mdaspulse { animation: pulse-glow 2s ease-in-out infinite;}
+
+.mdasdivider {
+    width: 1px;
+    height: 28px;
+    background: var(--border-subtle);
+}
+
+.mdasright {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width : 280px;
+    justify-content: flex-end;
+}
