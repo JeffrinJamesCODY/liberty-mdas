@@ -1,11 +1,10 @@
-import React from 'react'
-import { useMDASStore } from '../../stores/useMDASStore'
+import { useMDASStore } from '../../store/useMDASStore.js'
 import styles from './EntityDetail.module.css'
 
 export default function EntityDetail() {
     const { selectedEntity , clearSelectedEntity } = useMDASStore()
 
-    if (!slectedEntity) return null
+    if (!selectedEntity) return null
 
     const props = selectedEntity.properties
     const type = props?.type?.getValue()
