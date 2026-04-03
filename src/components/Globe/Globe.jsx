@@ -1,6 +1,6 @@
-import React, {useEffect, useRef } from 'react'
 import * as Cesium from 'cesium'
-import { useMDASStore} from '../../stores/MDASStore'
+import { useEffect, useRef } from 'react'
+import { useMDASStore } from '../../store/useMDASStore.js'
 import styles from './Globe.module.css'
 
 // Cesium Ion Access Token (need to change later ** )
@@ -12,66 +12,42 @@ export default function Globe() {
     const viewerRef = useRef(null)
     const { aircraft, satellites, layers, setSelectedEntity } = useMDASStore()
 
-    useEffect(() => {
-        if (!cesiumContainerRef.current || viewerRef.current) return
+useEffect(() => { //Small timeout ensures the DOM element is fully mounted
+  const timer = setTimeout(() => {
+    if (!cesiumContainerRef.current || viewerRef.current) return
 
-        Cesium.Ion.defaultAccessToken = CESIUM_TOKEN
-        const viewer = new Cesium.Viewer(cesiumContainerRef.current, {
-            animation: false,
-            baseLayerPicker: false,
-            fullscreenButton: false,
-            geocoder: false,
-            homeButton: false,
-            infoBox: false,
-            sceneModePicker: false,
-            selectionIndicator: false,
-            timeline: false,
-            navigationHelpButton: false,
-            navigationInstructionsInitiallyVisible: false,
-            creditContainer: document.createElement('div'),
+    try {
+      Cesium.Ion.defaultAccessToken = CESIUM_TOKEN
 
-            requestRenderMode: false,
-            maximumRenderTimeChange: Infinity,
+      const viewer = new Cesium.Viewer(cesiumContainerRef.current, {
+        animation: false,
+        baseLayerPicker: false,
+        fullscreenButton: false,
+        geocoder: false,
+        homeButton: false,
+        infoBox: false,
+        sceneModePicker: false,
+        selectionIndicator: false,
+        timeline: false,
+        navigationHelpButton: false,
+        navigationInstructionsInitiallyVisible: false,
+        creditContainer: document.createElement('div'),
+        requestRenderMode: false,
+        maximumRenderTimeChange: Infinity,
+      })
 
-            terrainProvider: new Cesium.CesiumTerrainProvider({
-                url: Cesium.IonResource.fromAssetId(1),
-            }),
-        })
+      viewerRef.current = viewer
+      const scene = viewer.scene
+      const globe = scene.globe
 
-        viewerRef.current = viewer
-        const scene = viewer.scene
-        const globe = scene.globe
+      scene.skyAtmosphere = new Cesium.SkyAtmosphere()
+      scene.sun = new Cesium.Sun()
+      scene.moon = new Cesium.Moon()
+      globe.enableLighting = true
+      globe.showGroundAtmosphere = true
+      globe.nightFadeOutDistance = 50000000
+      globe.nightFadeInDistance = 10000000
 
-        scene.skyAtmosphere = new Cesium.SkyAtmosphere()
-        scene.skyAtmosphere.brightnessShift = 0.1
-        scene.skyAtmosphere.hueShift = 0.0
-
-        scene.skyBox = new Cesium.SkyBox({
-            sources: {
-                positiveX: 'cesium/Assets/Textures/SkyBox/tycho2t3_80_px.jpg',
-                negativeX: 'cesium/Assets/Textures/SkyBox/tycho2t3_80_mx.jpg',
-                positiveY: 'cesium/Assets/Textures/SkyBox/tycho2t3_80_py.jpg',
-                negativeY: 'cesium/Assets/Textures/SkyBox/tycho2t3_80_my.jpg',
-                positiveZ: 'cesium/Assets/Textures/SkyBox/tycho2t3_80_pz.jpg',
-                negativeZ: 'cesium/Assets/Textures/SkyBox/tycho2t3_80_mz.jpg',
-            }
-        })
-
-        scene.sun = new Cesium.Sun()
-        scene.moon = new Cesium.Moon()
-
-        globe.enableLighting = true
-        globe.atmosphereLightIntensity = 10.0
-        globe.showGroundAtmosphere = true
-        globe.nightFadeOutDistance = 50000000
-        globe.nightFadeInDistance = 10000000
-
-        scene.globe.depthTestAgainstTerrain = true
-
-        scene.shadowMap = new Cesium.ShadowMap({
-            lightCamera: scene.sun._updateCommand,
-            enabled: false,
-        })
       const loadImagery = async () => {
         if (GOOGLE_MAPS_KEY) {
           try {
@@ -79,49 +55,54 @@ export default function Globe() {
               `https://tile.googleapis.com/v1/3dtiles/root.json?key=${GOOGLE_MAPS_KEY}`
             )
             scene.primitives.add(googleTileset)
-
             globe.show = false
-            console.log('Google Maps 3D Tiles loaded successfully')
           } catch (error) {
-            console.warn('Failed to load Google 3D tiles, using Cesium terrain', e)
+            console.warn('Google tiles failed, using Bing:', error)
+            viewer.imageryLayers.addImageryProvider(
+              new Cesium.IonImageryProvider({ assetId: 2 })
+            )
           }
-        
         } else {
           viewer.imageryLayers.addImageryProvider(
-            new Cesium.IonImageryProvider({ assetId: 2})
+            new Cesium.IonImageryProvider({ assetId: 2 })
           )
-          console.log('Using Cesium World Terrain and Imagery')
         }
       }
+
       loadImagery()
 
       viewer.camera.setView({
-      destination: Cesium.Cartesian3.fromDegrees(0, 20, 20000000),
-      orientation: {
-        heading: Cesium.Math.toRadians(0),
-        pitch: Cesium.Math.toRadians(-90),
-        roll: 0,
-      },
-    })
+        destination: Cesium.Cartesian3.fromDegrees(0, 20, 20000000),
+        orientation: {
+          heading: Cesium.Math.toRadians(0),
+          pitch: Cesium.Math.toRadians(-90),
+          roll: 0,
+        },
+      })
 
-    const clickHandler = new Cesium.ScreenSpaceEventHandler(scene.canvas)
-    clickHandler.setInputAction((click) => {
-      const picked = scene.pick(click.position)
-      if (Cesium.defined(picked) && Cesium.defined(picked.id)) {
-        setSelectedEntity(picked.id)
-      } else {
-        setSelectedEntity(null)
-      }
-    }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
+      const clickHandler = new Cesium.ScreenSpaceEventHandler(scene.canvas)
+      clickHandler.setInputAction((click) => {
+        const picked = scene.pick(click.position)
+        if (Cesium.defined(picked) && Cesium.defined(picked.id)) {
+          setSelectedEntity(picked.id)
+        } else {
+          setSelectedEntity(null)
+        }
+      }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 
-    return () => {
-      clickHandler.destroy()
-      if (viewerRef.current && !viewerRef.current.isDestroyed()) {
-        viewerRef.current.destroy()
-        viewerRef.current = null
-      }
+    } catch (err) {
+      console.error('Cesium init error:', err)
     }
-  }, [])
+  }, 100) // 100ms delay — ensures DOM is ready
+
+  return () => {
+    clearTimeout(timer)
+    if (viewerRef.current && !viewerRef.current.isDestroyed()) {
+      viewerRef.current.destroy()
+      viewerRef.current = null
+    }
+  }
+}, [])
 
   useEffect(() => {
     const viewer = viewerRef.current
