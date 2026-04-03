@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { useMDASStore } from '../../stores/useMDASStore'
-import TopBar from './TopBar'
-import SidePanel from './SidePanel'
-import LayerControls from './LayerControls'
+import { useEffect } from 'react'
+import { useMDASStore } from '../../store/useMDASStore.js'
 import EntityDetail from './EntityDetail'
-import StatusBar from './StatusBar'
 import styles from './HUD.module.css'
+import LayerControls from './LayerControls'
+import SidePanel from './SidePanel'
+import StatusBar from './StatusBar'
+import TopBar from './TopBar'
 
 export default function HUD() {
     const { tickTime } = useMDASStore ()
