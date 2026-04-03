@@ -1,0 +1,100 @@
+:root {
+  --bg-void: #000408;
+  --bg-deep: #010b14;
+  --bg-panel: rgba(0, 12, 24, 0.85);
+  --bg-panel-hover: rgba(0, 20, 40, 0.92);
+
+/* liberty accents*/
+  --accent-primary: #00d4ff;      /* mElectric cyan main UI*/
+  --accent-secondary: #00ff9d;    /* Neon green status/active */
+  --accent-warning: #ffaa00;      /* Amber alerts */
+  --accent-danger: #ff3355;       /* Red threats*/
+  --accent-purple: #8855ff;       /*  Purple spaceobjects */
+
+  --text-primary: #e0f4ff;
+  --text-secondary: #7ab8d4;
+  --text-dim: #3a6070;
+  --text-mono: #00d4ff;
+
+  --border-subtle: rgba(0, 212, 255, 0.12);
+  --border-active: rgba(0, 212, 255, 0.4);
+  --border-glow: rgba(0, 212, 255, 0.8);
+
+  --font-display: 'Orbitron', monospace;     /* Headers, logo */
+  --font-ui: 'Rajdhani', sans-serif;         /* UI labels, panels */
+  --font-data: 'Share Tech Mono', monospace; /* Data readouts, coordinates */
+
+  /* size   */
+  --hud-panel-width: 280px;
+  --hud-radius: 4px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-void);
+  color: var(--text-primary);
+}
+
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent-primary); opacity: 0.3; border-radius: 2px; }
+
+/* selection   */
+::selection { background: rgba(0, 212, 255, 0.25); color: white; }
+
+/*     scanline overlay effect on HUD panels */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* pulse anim for live indicators */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--accent-secondary); }
+  50% { opacity: 0.5; box-shadow: 0 0 12px var(--accent-secondary); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* datacounter animatin */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* cesium canvas fill container */
+.cesium-widget,
+.cesium-widget canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* hide cesium default UI chrome */
+.cesium-widget-credits { display: none !important; }
