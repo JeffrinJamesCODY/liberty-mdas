@@ -1,5 +1,4 @@
-import React from 'react'
-import { useMDASStore } from '../../stores/useMDASStore'
+import { useMDASStore } from '../../store/useMDASStore.js'
 import styles from './SidePanel.module.css'
 
 export default function SidePanel() {
