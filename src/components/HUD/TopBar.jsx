@@ -1,11 +1,10 @@
-import React from 'react'
-import { useMDASStore } from '../../stores/useMDASStore'
+import { useMDASStore } from '../../store/useMDASStore.js'
 import styles from './TopBar.module.css'
 
 export default function TopBar() {
     const { currentTime, feedStatus, aircraftCount, satelliteCount } = useMDASStore()
 
-    const utc = currentTime.toISOSTRING().replace('T', ' ').slice(0, 19) + ' UTC'
+    const utc = currentTime.toISOString().replace('T', ' ').slice(0, 19) + ' UTC'
     const date = currentTime.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase()
 
     return (
