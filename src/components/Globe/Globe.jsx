@@ -57,7 +57,7 @@ useEffect(() => { //Small timeout ensures the DOM element is fully mounted
             scene.primitives.add(googleTileset)
             globe.show = false
           } catch (error) {
-            console.warn('Google tiles failed, using Bing:', error)
+            console.warn('Failed to load Google tiles:', error)
             viewer.imageryLayers.addImageryProvider(
               new Cesium.IonImageryProvider({ assetId: 2 })
             )
