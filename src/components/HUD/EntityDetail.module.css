@@ -7,13 +7,13 @@
     background: var(--bg-panel);
     border: 1px solid var(--border-active);
     border-radius: var(--hud-radius);
-    backdrop-filter: blur(16px);
+    --webkit-backdrop-filter: blur(16px);
     box-shadow: 0 0 30px rgba(0, 212, 255, 0.1), 0 8px 32px rgba(0,0,0,0.5);
     animation: fade-in 0.2s ease;
 
 }
 
-.jeader {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
