@@ -58,14 +58,13 @@ useEffect(() => { //Small timeout ensures the DOM element is fully mounted
             globe.show = false
           } catch (error) {
             console.warn('Failed to load Google tiles:', error)
-            viewer.imageryLayers.addImageryProvider(
-              new Cesium.IonImageryProvider({ assetId: 2 })
-            )
+            const provider = await Cesium.IonImageryProvider.fromAssetId(2)
+            viewer.imageryLayers.addImageryProvider(provider)
           }
         } else {
-          viewer.imageryLayers.addImageryProvider(
-            new Cesium.IonImageryProvider({ assetId: 2 })
-          )
+          const provider = await Cesium.IonImageryProvider.fromAssetId(2)
+          viewer.imageryLayers.addImageryProvider(provider)
+          console.log('Using Cesium')
         }
       }
 
@@ -177,10 +176,10 @@ useEffect(() => { //Small timeout ensures the DOM element is fully mounted
         point: {
           pixelSize: isISS ? 8 : 4,
           color: isISS
-            ? Cesium.Color.fromCssColorString('#00ff9d')
+            ? Cesium.Color.fromCssColorString('#00ddff')
             : Cesium.Color.fromCssColorString('#8855ff').withAlpha(0.8),
           outlineColor: isISS
-            ? Cesium.Color.fromCssColorString('#00ff9d').withAlpha(0.3)
+            ? Cesium.Color.fromCssColorString('#4c00ff').withAlpha(0.3)
             : Cesium.Color.fromCssColorString('#8855ff').withAlpha(0.2),
           outlineWidth: isISS ? 4 : 2,
           scaleByDistance: new Cesium.NearFarScalar(1e5, 2, 4e7, 0.5),
