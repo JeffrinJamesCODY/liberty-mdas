@@ -48,6 +48,17 @@ useEffect(() => { //Small timeout ensures the DOM element is fully mounted
       globe.nightFadeOutDistance = 50000000
       globe.nightFadeInDistance = 10000000
 
+      var spinRate = 0.0001; //added spin for realistic movement - was 0.5, adjusted to 0.02 because it was too fast.
+      var lastNow = Date.now();
+
+      viewer.scene.postRender.addEventListener(function(scene, time) {
+        var now = Date.now();
+        var delta = (now-lastNow) /1000;
+        lastNow = now;
+        viewer.scene.camera.rotate(Cesium.Cartesian3.UNIT_Z, spinRate * delta);
+      })
+// ----------------------------------------------------------  just for a reminder for me (spin)
+
       const loadImagery = async () => {
         if (GOOGLE_MAPS_KEY) {
           try {
