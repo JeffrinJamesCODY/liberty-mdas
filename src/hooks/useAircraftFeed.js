@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { useMDASStore } from '../store/useMDASStore'
 
-const REFRESH_INTERVAL = 12000
+const REFRESH_INTERVAL = 60000
 const MILITARY_ICAO_PREFIXES = {
     'ADF7': 'USAF',
     'AE': 'USE Military',
@@ -23,7 +23,7 @@ export function useAircraftFeed() {
         '/api/opensky',
         {signal: abortRef.current.signal}
         )
-        if (!res.ok) throw new Error('OpenSky HTTP ${res.status}')
+        if (!res.ok) throw new Error(`OpenSky HTTP ${res.status}`)
         const data = await res.json()
         const states = data.states || []
         const airborne = states.filter(s =>
@@ -43,9 +43,16 @@ export function useAircraftFeed() {
     } catch (err) {
         if (err.name === 'AbortError') return
         console.error('Liberty OpenSky fetch error:', err)
+
+        if (err.message.includes('429')) {
+            console.warn('OpenSky rate limit hit, backing off 5 minutes')
+            setFeedStatus('opensky', 'error')
+            lastFetchRef.current = Date.now() + (5 * 60 * 1000)
+            return
+        }
         setFeedStatus('opensky', 'error')
 
-        setTimeout(fetchAircraft, 30000)
+        setTimeout(fetchAircraft, 60000)
     }
     }, [setAircraft, setMilitaryAircraft, setFeedStatus])
 
@@ -62,7 +69,7 @@ export function useAircraftFeed() {
 function isMilitaryICAO(icao24) {
     if (!icao24) return false
     const upper = icao24.toUpperCase()
-    if (upper.starsWith('AE') || upper.starts.with('AF')) return true
+    if (upper.startsWith('AE') || upper.startsWith('AF')) return true
     if (upper.startsWith('43C') || upper.startsWith('43D') || upper.startsWith('43E') || upper.startsWith('43F')) return true
     return false
 
