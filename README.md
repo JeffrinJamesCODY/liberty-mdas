@@ -1,6 +1,7 @@
-# liberty-mdas
-Libert MDAS is an Geo-Spatial Software that tracks aircraft traffic, military air traffic, satellites and near earth asteroids.
+## Welcome to LibertyMDAS Documentation.
 
-This is my first time building a GeoSpatial Project that I always wanted to build. Previously, the Project was called Saphics-Space.
+Liberty-MDAS is an Multi Domain Awareness Suite that shows live-tracking for Aircrafts such as CIVIL/MILITARY, Live Satellite through TLEs, Data on NeoWS NASA. The original mission is to create an Space Defense Application from Scratch with more sophisticated features as we keep building Liberty.
+![screenshot of unpatched Liberty run](<src/database/Screenshot 2026-04-21 010046.png>)
 
-I'm inspired by the WorldView created by Bilawal(Ex-Google PM) through his recent video on how he created a similar GeoSpatial software like Palantir.
+
+
