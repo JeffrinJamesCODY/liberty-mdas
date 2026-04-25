@@ -6,7 +6,7 @@
     background: var(--bg-panel);
     border: 1px solid var(--border-subtle);
     border-radius: var(--hud_subtle);
-    backdrop-filter: blur(12px);
+    --webkit-backdrop-filter: blur(12px);
     animation: slide-in-right 0.5s ease;
     overflow: hidden;
 }
