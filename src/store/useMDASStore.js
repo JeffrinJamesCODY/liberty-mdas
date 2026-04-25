@@ -19,10 +19,18 @@ export const useMDASStore = create((set, get) =>( {
     aircraft: [],
     militaryAircraft: [],
     aircraftCount: 0,
-    setAircraft: (data) => set({ militaryAircraft: data}),
+    militaryAircraftCount: 0,
+    setAircraft: (data) => set({  //fixed a bug where the aircraft count was taking data from military aircraft instead aircraft data, which caused the count to be incorrect.
+        aircraft: data,
+        aircraftCount: data.length,
+    }),
+
+    setMilitaryAircraft: (data) => set({ //fixed a bug in setAircraft and added a new setMilitaryAircraft function to seperate data for military and civil.
+        militaryAircraft: data,
+    }),
 
     satellites: [] ,
-    satellite: 0,
+    satellites: 0,
     
     setSatellites: (data) => set ({
         satellites: data,
@@ -36,7 +44,7 @@ export const useMDASStore = create((set, get) =>( {
         neoObjects: data,
         neoCount: data.length
     }),
-// space weather 
+// space weather - issue (need to change this later, just a placeholder for now) created a issue for spaceweather dev in github, to be added after all the existing issues are resolved.
     SpaceWeather: {
         kpIndex: null,
         solarWindSpeed: null,
@@ -57,7 +65,7 @@ export const useMDASStore = create((set, get) =>( {
 
     currentTime: new Date(),
     tickTime:  ()=> set({ currentTime: new Date()}),
-// status for liberty
+    // liberty feed status
     feedStatus:{
         openSky: 'liberty connecting',
         celestrak: 'liberty connecting',
