@@ -1,3 +1,6 @@
+## THIS REPOSITORY IS LEGACY VERSION OF LIBERTY-MDAS.
+## v.2 Liberty-MDAS will be available open source with a new repository - TBA
+
 ## Welcome to LibertyMDAS Documentation.
 
 Liberty-MDAS is an Multi Domain Awareness Suite that shows live-tracking for Aircrafts such as CIVIL/MILITARY, Live Satellite through TLEs, Data on NeoWS NASA. The original mission is to create an Space Defense Application from Scratch with more sophisticated features as we keep building Liberty.
